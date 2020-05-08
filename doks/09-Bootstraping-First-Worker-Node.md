@@ -197,9 +197,10 @@ Execute the below command in master VM.
     kubectl get nodes --kubeconfig admin.kubeconfig
     
 > Output:
-
-   NAME                      STATUS   ROLES    AGE   VERSION  
-   workerone-rhel8-nodeone   Ready    <none>   93s   v1.18.2
+    
+   | NAME | STATUS | ROLES | AGE | VERSION |
+   | :---: | :---: | :---: | :---: | :---: |
+   | workerone-rhel8-nodeone | Ready | < none > | 93s |  v1.18.2
 
 
 Next: [Bootstrapping the Kubernetes Second Worker Node](https://github.com/sanjibbehera/ManuallyInstallKubernetesVer1_18InRHEL8/blob/master/doks/10-Bootstraping-Second-Worker-Node.md)
