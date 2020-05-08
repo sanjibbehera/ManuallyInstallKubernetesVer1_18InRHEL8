@@ -9,12 +9,16 @@ View the generated public key ID at:
     $cat .ssh/id_rsa.pub
     ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAA......8BtvJLJs= vagrant@kubernetes-rhel8-master
     
-Move public key of master to rest VMs.
+Move public key of master to rest VMs.  
+Important Note:  
+Copy the content of file 'id_rsa.pub' to authorized_keys in the target VMs.  
+Make sure that authorized_keys file permissions are 600 & .ssh folder to be 700.
 
 Install kubectl
 =====================
 The kubectl. command line utility is used to interact with the Kubernetes API Server.  
-Download and install kubectl from the official release binaries.
+Download and install kubectl from the official release binaries.  
+Make sure that the file is downloaded in the Master VM for this scenario.
 
     wget https://storage.googleapis.com/kubernetes-release/release/v1.18.2/bin/linux/amd64/kubectl
     chmod +x kubectl
