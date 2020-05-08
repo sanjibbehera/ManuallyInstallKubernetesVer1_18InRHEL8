@@ -55,5 +55,5 @@ sudo firewall-cmd --reload
     Name:      kubernetes
     Address 1: 10.96.0.1 kubernetes.default.svc.cluster.local
     
-Next: []()
+Next: [Kubernetes Dashboard](https://github.com/sanjibbehera/ManuallyInstallKubernetesVer1_18InRHEL8/blob/master/doks/15-kubernetes-dashboard.md)
 
