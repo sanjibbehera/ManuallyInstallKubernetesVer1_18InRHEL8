@@ -2,8 +2,7 @@
 
 ## Prerequisites
 The Certificates and Configuration are created on master node and then copied over to workers using scp.  
-Once this is done, the commands are to be run on first worker instance: workerone-rhel8-nodeone.  
-Login to first worker instance using SSH Terminal.
+Once this is done, the commands are to be run on first worker instance: workerone-rhel8-nodeone.
 
 ### Provisioning Kubelet Client Certificates
 
