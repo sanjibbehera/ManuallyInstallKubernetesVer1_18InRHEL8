@@ -1,0 +1,1 @@
+# ManuallyInstallKubernetesVer1_18InRHEL8
