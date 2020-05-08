@@ -14,3 +14,4 @@ Information about the components in the Kubernetes cluster.
 
 Steps to be executed.
 =====================
+* [Prequisites](https://github.com/sanjibbehera/ManuallyInstallKubernetesVer1_18InRHEL8/blob/master/doks/01-prerequisites.md)
