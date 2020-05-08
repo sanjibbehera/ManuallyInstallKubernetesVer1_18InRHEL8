@@ -12,3 +12,5 @@ VM Hardware Requirements
 
 ### Important Notes.
     As we are about to spinup RHEL8 VMs, make sure you have RHEL subscription to subscribe the VMs.
+    If you do not have any subscription, you can create RHEL developer account subscription in order to 
+    continue to create Kubernetes Cluster in RHEL8 VMs.
