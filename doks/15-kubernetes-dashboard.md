@@ -25,6 +25,9 @@ The Dashboard UI is not deployed by default. To deploy it, run the following com
 To protect your cluster data, Dashboard deploys with a minimal RBAC configuration by default.  
 Currently, Dashboard only supports logging in with a Bearer Token.
 
+### To create a token.
+
+
 ### Command line proxy
 You can access Dashboard using the kubectl command-line tool by running the following command:
 
