@@ -229,7 +229,7 @@ Execute the below command in master VM.
     
 > Important Note.  
 Even after the kubelet is running now, it throws error which can be seen in the messages file 
-and also the status of the Node is NotReady, since we need to configure the Network.
+and also the status of the Node is NotReady, since we need to configure the Network.  
 May 09 19:49:34 kubernetes-rhel8-workervm kubelet[7690]: E0509 19:49:34.678324    7690 kubelet.go:2187] Container runtime network not ready: NetworkReady=false rea>  
 May 09 19:49:38 kubernetes-rhel8-workervm kubelet[7690]: W0509 19:49:38.159981    7690 cni.go:237] Unable to update cni config: no networks found in /etc/cni/net.d
 
