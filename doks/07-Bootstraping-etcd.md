@@ -100,12 +100,14 @@ List the etcd cluster members:
    	Loaded: loaded (/etc/systemd/system/etcd.service; enabled; vendor preset: disabled)
    	Active: activating (auto-restart) (Result: exit-code) since Sat 2020-05-09 19:09:27 UTC; 2s ago
      	Docs: https://github.com/coreos
-  	Process: 7670 ExecStart=/usr/local/bin/etcd --name kubernetes-rhel8-mastervm --cert-file=/etc/etcd/etcd-server.crt --key-	file=/etc/etcd/etcd-server.key --peer-ce>
+  	Process: 7670 ExecStart=/usr/local/bin/etcd --name kubernetes-rhel8-mastervm --cert-file=/etc/etcd/etcd-server.crt 
+	--key-	file=/etc/etcd/etcd-server.key --peer-ce>
  	Main PID: 7670 (code=exited, status=203/EXEC)
      
      Error in messages file under /var/log/messages will show like below:-
      May  9 19:09:54 kubernetes-rhel8-mastervm systemd[7690]: etcd.service: Failed to execute command: Permission denied
-     May  9 19:09:54 kubernetes-rhel8-mastervm systemd[7690]: etcd.service: Failed at step EXEC spawning /usr/local/bin/etcd: Permission denied
+     May  9 19:09:54 kubernetes-rhel8-mastervm systemd[7690]: etcd.service: Failed at step EXEC spawning /usr/local/bin/etcd: 
+     Permission denied
      
      For the above error 'Permission denied' we need to adapt /etc/sudoers file, for which workaround solution has been mentioned above.
 
