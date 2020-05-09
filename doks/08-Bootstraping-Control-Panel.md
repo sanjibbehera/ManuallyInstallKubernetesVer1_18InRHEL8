@@ -140,7 +140,6 @@ Create the kube-scheduler.service systemd unit file:
     ExecStart=/usr/local/bin/kube-scheduler \\
       --kubeconfig=/var/lib/kubernetes/kube-scheduler.kubeconfig \\
       --address=127.0.0.1 \\
-      --leader-elect=true \\
       --v=2
     Restart=on-failure
     RestartSec=5
