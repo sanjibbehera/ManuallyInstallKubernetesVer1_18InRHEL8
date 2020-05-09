@@ -203,5 +203,31 @@ Execute the below command in master VM.
    | workerone-rhel8-nodeone | Ready | < none > | 93s |  v1.18.2
 
 
+### Error Handling.
+
+    Even after the above steps, you may face issue while starting up the kubelet or kube-proxy processes,
+    like the error snapshot below.
+    
+    sudo systemctl status kubelet
+    ● kubelet.service - Kubernetes Kubelet
+    Loaded: loaded (/etc/systemd/system/kubelet.service; disabled; vendor preset: disabled)
+    Active: activating (auto-restart) (Result: exit-code) since Sat 2020-05-09 19:45:30 UTC; 3s ago
+     Docs: https://github.com/kubernetes/kubernetes
+    Process: 7652 ExecStart=/usr/local/bin/kubelet --config=/var/lib/kubelet/kubelet-config.yaml --image-pull-progress-deadline=2m 
+    --kubeconfig=/var/lib/kubelet/kube>
+    Main PID: 7652 (code=exited, status=203/EXEC)
+    
+    Error in messages file under /var/log/messages will show like below:-
+    May  9 19:45:40 kubernetes-rhel8-workervm systemd[7660]: kubelet.service: Failed to execute command: Permission denied
+    May  9 19:45:40 kubernetes-rhel8-workervm systemd[7660]: kubelet.service: Failed at step EXEC spawning 
+    /usr/local/bin/kubelet: Permission denied
+    
+    For the above error 'Permission denied' we need to adapt /etc/sudoers file, for which workaround solution has been mentioned above.
+    
+    Actual Solution for the above issue, is to execute the below command and then restrat etcd.
+    sudo setenforce 0
+    
+
+
 Next: [Bootstrapping the Kubernetes Second Worker Node](https://github.com/sanjibbehera/ManuallyInstallKubernetesVer1_18InRHEL8/blob/master/doks/10-Bootstraping-Second-Worker-Node.md)
     
