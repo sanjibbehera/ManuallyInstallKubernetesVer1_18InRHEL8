@@ -6,7 +6,8 @@ Once this is done, the commands are to be run on first worker instance: workeron
 
 ### Provisioning Kubelet Client Certificates
 
-> Generate a certificate and private key for workerone-rhel8-nodeone node in master node.
+> Generate a certificate and private key for workerone-rhel8-nodeone node in master node.  
+Important Note: Please use the FQDN name for the worker node while creating certificate.
 
     cat > openssl-workerone-rhel8-nodeone.cnf <<EOF
     [req]
