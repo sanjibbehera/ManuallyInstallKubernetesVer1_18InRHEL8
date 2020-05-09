@@ -200,7 +200,7 @@ Execute the below command in master VM.
     
    | NAME | STATUS | ROLES | AGE | VERSION |
    | :---: | :---: | :---: | :---: | :---: |
-   | workerone-rhel8-nodeone | Ready | < none > | 93s |  v1.18.2
+   | workerone-rhel8-nodeone | NotReady | < none > | 93s |  v1.18.2
 
 
 ### Error Handling.
@@ -227,6 +227,11 @@ Execute the below command in master VM.
     Actual Solution for the above issue, is to execute the below command and then restrat etcd.
     sudo setenforce 0
     
+> Important Note.  
+Even after the kubelet is running now, it throws error which can be seen in the messages file 
+and also the status of the Node is NotReady, since we need to configure the Network.
+May 09 19:49:34 kubernetes-rhel8-workervm kubelet[7690]: E0509 19:49:34.678324    7690 kubelet.go:2187] Container runtime network not ready: NetworkReady=false rea>  
+May 09 19:49:38 kubernetes-rhel8-workervm kubelet[7690]: W0509 19:49:38.159981    7690 cni.go:237] Unable to update cni config: no networks found in /etc/cni/net.d
 
 
 Next: [Bootstrapping the Kubernetes Second Worker Node](https://github.com/sanjibbehera/ManuallyInstallKubernetesVer1_18InRHEL8/blob/master/doks/10-Bootstraping-Second-Worker-Node.md)
