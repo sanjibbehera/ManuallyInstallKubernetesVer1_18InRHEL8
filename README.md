@@ -33,3 +33,4 @@ Steps to be executed.
 * [DNS Addon](https://github.com/sanjibbehera/ManuallyInstallKubernetesVer1_18InRHEL8/blob/master/doks/14-dns-addon.md)
 * [Kubernetes Dashboard](https://github.com/sanjibbehera/ManuallyInstallKubernetesVer1_18InRHEL8/blob/master/doks/15-kubernetes-dashboard.md)
 * [Bootstraping Helm](https://github.com/sanjibbehera/ManuallyInstallKubernetesVer1_18InRHEL8/blob/master/doks/16-Helm.md)
+* [Smoke Test](https://github.com/sanjibbehera/ManuallyInstallKubernetesVer1_18InRHEL8/blob/master/doks/17-smoke%20tests.md)
