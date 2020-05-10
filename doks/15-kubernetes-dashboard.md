@@ -83,3 +83,5 @@ please execute the below command to find out the ports:
         
 Hence the Dashboard will be available at https://192.168.15.11:31139/#/service?namespace=_all [Login Link]
 > Important Note: The token which you had saved, should be used to login now.
+
+Next: [Installing Helm](https://github.com/sanjibbehera/ManuallyInstallKubernetesVer1_18InRHEL8/blob/master/doks/16-Helm.md)
