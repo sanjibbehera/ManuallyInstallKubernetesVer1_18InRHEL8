@@ -48,7 +48,13 @@ Install Grafana Chart
 
     helm install grafana-sanjib flagger/grafana --version 1.4.0
     
-> Note: Once the service is up and running, edit the service type to NodePort from ClusterIP to access from Web Browser.
+> Note: Once the service is up and running, edit the service type to NodePort from ClusterIP to access from Web Browser.  
+First find the Nodeport which is exposed after changing the service type via the command.  
+kubectl get svc grafana-sanjib  
+NAME             TYPE       CLUSTER-IP    EXTERNAL-IP   PORT(S)        AGE  
+grafana-sanjib   NodePort   10.96.0.241   <none>        80:32222/TCP   27m  
+Hence the URL will be 'http://192.168.17.11:32222/'
+
 
 
 ### TASK 2 (Install MongoDB via Helm)
