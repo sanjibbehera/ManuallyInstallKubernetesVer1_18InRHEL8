@@ -13,6 +13,7 @@ Information about the components in the Kubernetes cluster.
 * Weave Networking  
 * etcd 3.4.7
 * CoreDNS 1.6.6
+* Helm 3.2.1
 
 Steps to be executed.
 =====================
