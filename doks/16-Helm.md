@@ -153,6 +153,22 @@ Add HELM REPO
 Execute the below command to get the password.  
 kubectl get secret --namespace default dev-jenkins -o jsonpath="{.data.jenkins-password}" | base64 --decode
 
+### Accessing JENKINS URL.
+
+> By default JENKINS Service runs as LoadBalancer Service Type, as we are working VMs and not on cloud,  
+we need to change the service type to NodePort. Once the changes are made, verify the Jenkins Service.
+
+    kubectl get svc dev-jenkins
+    
+> Output:
+
+    NAME          TYPE       CLUSTER-IP    EXTERNAL-IP   PORT(S)                      AGE
+    dev-jenkins   NodePort   10.96.0.210   <none>        80:32559/TCP,443:30149/TCP   66m
+
+> Hence the JENKINS can be accessed by the URL 'http://192.168.17.11:32559/'  
+Make sure you decode the password from the above steps in order to login.
+
+
 ### Troubleshooting.
 > You may face file system issues, like the below error.  
 Error executing 'postInstallation': EACCES: permission denied, open '/bitnami/jenkins/.buildcomplete'  
