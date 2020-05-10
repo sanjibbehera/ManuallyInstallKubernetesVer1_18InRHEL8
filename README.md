@@ -2,7 +2,7 @@
 
 This GITHUB Repository show the steps to build manually Kubernetes Cluster on RHEL v8.2 VMs.  
 Also we perform smoke test to check application deployments in the Cluster.  
-We will also check the same via the Kubernetes Dashboard.
+We will also check cluster health via the Kubernetes Dashboard.
 
 Cluster Details.
 =====================
@@ -13,6 +13,7 @@ Information about the components in the Kubernetes cluster.
 * Weave Networking  
 * etcd 3.4.7
 * CoreDNS 1.6.6
+* Kubernetes Dashboard 2.0.0
 * Helm 3.2.1
 
 Steps to be executed.
@@ -33,3 +34,4 @@ Steps to be executed.
 * [DNS Addon](https://github.com/sanjibbehera/ManuallyInstallKubernetesVer1_18InRHEL8/blob/master/doks/14-dns-addon.md)
 * [Kubernetes Dashboard](https://github.com/sanjibbehera/ManuallyInstallKubernetesVer1_18InRHEL8/blob/master/doks/15-kubernetes-dashboard.md)
 * [Bootstraping Helm](https://github.com/sanjibbehera/ManuallyInstallKubernetesVer1_18InRHEL8/blob/master/doks/16-Helm.md)
+* [Smoke Test](https://github.com/sanjibbehera/ManuallyInstallKubernetesVer1_18InRHEL8/blob/master/doks/17-smoke%20tests.md)
