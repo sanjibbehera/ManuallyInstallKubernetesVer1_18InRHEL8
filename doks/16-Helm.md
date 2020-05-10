@@ -62,7 +62,7 @@ Add HELM REPO
 
     helm repo add bitnami https://charts.bitnami.com/bitnami
     
-> Please make sure that you have PV already installed, since we want a persistent volume for MONGODB.  
+> Please make sure that you have PV already deployed, since we want a persistent volume for MONGODB.  
 
     kubectl create -f https://raw.githubusercontent.com/sanjibbehera/ManuallyInstallKubernetesVer1_18InRHEL8/master/deployments/pv-mongodb.yaml
     
@@ -108,4 +108,59 @@ Install MongoDB.
     Since I have mongo client already installed in my laptop, the below command was used to connect the DB.
     mongo --host 192.168.17.11 --port 32575 --authenticationDatabase admin -p <DBPASSWORD>
     
+### TASK 3 (Install Jenkins via Helm)
+Add HELM REPO
+
+    helm repo add bitnami https://charts.bitnami.com/bitnami
+    
+> Please make sure that you have PV already deployed, since we want a persistent volume for JENKINS.  
+
+    https://raw.githubusercontent.com/sanjibbehera/ManuallyInstallKubernetesVer1_18InRHEL8/master/deployments/pv-jenkins-bitnmami.yaml
+    
+> Output:
+
+    persistentvolume/jenkins-bitnami-pv created
+    
+### Install JENKINS.
+
+    helm install dev-jenkins bitnami/jenkins --set jenkinsUsername=admin -f jenkins-values.yaml
+    
+> Output:
+
+    NAME: dev-jenkins
+    LAST DEPLOYED: Sun May 10 17:11:21 2020
+    NAMESPACE: default
+    STATUS: deployed
+    REVISION: 1
+    TEST SUITE: None
+    NOTES:
+    ** Please be patient while the chart is being deployed **
+
+    1. Get the Jenkins URL by running:
+
+    ** Please ensure an external IP is associated to the dev-jenkins service before proceeding **
+    ** Watch the status using: kubectl get svc --namespace default -w dev-jenkins **
+
+      export SERVICE_IP=$(kubectl get svc --namespace default dev-jenkins --template "{{ range (index .status.loadBalancer.ingress 0) }}{{.}}{{ end }}")
+      echo "Jenkins URL: http://$SERVICE_IP/"
+
+    2. Login with the following credentials
+
+      echo Username: user
+      echo Password: $(kubectl get secret --namespace default dev-jenkins -o jsonpath="{.data.jenkins-password}" | base64 --decode)
+      
+> Important Note to retrieve the password:  
+Execute the below command to get the password.  
+kubectl get secret --namespace default dev-jenkins -o jsonpath="{.data.jenkins-password}" | base64 --decode
+
+### Troubleshooting.
+> You may face file system issues, like the below error.  
+Error executing 'postInstallation': EACCES: permission denied, open '/bitnami/jenkins/.buildcomplete'  
+
+Please remember that in order for Jenkins run correctly, we need to create the filesystem '/bitnami/jenkins' in Worker Node  
+for persistent storage. Still after that when Jenkins Container tries to write under this filesystem, the filesystem permissions  
+need to change  to userid '1001' as the owner of the filesystem, hence changing the ownership to 1001 should resolve the issue.    
+
+The file jenkins-values.yaml contain the definition for the variable 'RunasUser' and value is 1001 and hence the owner should be 1001.
+
 Next: [Smoke Test](https://github.com/sanjibbehera/ManuallyInstallKubernetesVer1_18InRHEL8/blob/master/doks/17-smoke%20tests.md)
