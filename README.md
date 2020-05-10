@@ -32,3 +32,4 @@ Steps to be executed.
 * [Kube-apiserver to Kubelet](https://github.com/sanjibbehera/ManuallyInstallKubernetesVer1_18InRHEL8/blob/master/doks/13-kube-apiserver-to-kubelet.md)
 * [DNS Addon](https://github.com/sanjibbehera/ManuallyInstallKubernetesVer1_18InRHEL8/blob/master/doks/14-dns-addon.md)
 * [Kubernetes Dashboard](https://github.com/sanjibbehera/ManuallyInstallKubernetesVer1_18InRHEL8/blob/master/doks/15-kubernetes-dashboard.md)
+* [Bootstraping Helm](https://github.com/sanjibbehera/ManuallyInstallKubernetesVer1_18InRHEL8/blob/master/doks/16-Helm.md)
