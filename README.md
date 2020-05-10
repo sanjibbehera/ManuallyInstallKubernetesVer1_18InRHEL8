@@ -30,3 +30,4 @@ Steps to be executed.
 * [Configure POD Network](https://github.com/sanjibbehera/ManuallyInstallKubernetesVer1_18InRHEL8/blob/master/doks/12-configure-pod-network.md)
 * [Kube-apiserver to Kubelet](https://github.com/sanjibbehera/ManuallyInstallKubernetesVer1_18InRHEL8/blob/master/doks/13-kube-apiserver-to-kubelet.md)
 * [DNS Addon](https://github.com/sanjibbehera/ManuallyInstallKubernetesVer1_18InRHEL8/blob/master/doks/14-dns-addon.md)
+* [Kubernetes Dashboard](https://github.com/sanjibbehera/ManuallyInstallKubernetesVer1_18InRHEL8/blob/master/doks/15-kubernetes-dashboard.md)
