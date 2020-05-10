@@ -123,7 +123,7 @@ Add HELM REPO
     
 ### Install JENKINS.
 
-    helm install dev-jenkins bitnami/jenkins --set jenkinsUsername=admin -f jenkins-values.yaml
+    helm install dev-jenkins bitnami/jenkins --set jenkinsUsername=admin -f https://raw.githubusercontent.com/sanjibbehera/ManuallyInstallKubernetesVer1_18InRHEL8/master/deployments/jenkins-values.yaml
     
 > Output:
 
