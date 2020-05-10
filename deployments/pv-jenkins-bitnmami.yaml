@@ -1,0 +1,13 @@
+apiVersion v1
+kind PersistentVolume
+metadata
+  name jenkins-bitnami-pv
+spec
+  capacity
+    storage 20Gi
+  accessModes
+    - ReadWriteOnce
+    - ReadOnlyMany
+  persistentVolumeReclaimPolicy Retain
+  hostPath
+    path bitnamijenkins
