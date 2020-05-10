@@ -2,7 +2,7 @@
 
 This GITHUB Repository show the steps to build manually Kubernetes Cluster on RHEL v8.2 VMs.  
 Also we perform smoke test to check application deployments in the Cluster.  
-We will also check the same via the Kubernetes Dashboard.
+We will also check cluster health via the Kubernetes Dashboard.
 
 Cluster Details.
 =====================
