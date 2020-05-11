@@ -106,7 +106,13 @@ Install MongoDB.
 
     I have changed the service type to NodePort from ClusterIP, such that I can access it from my host commandline.  
     Since I have mongo client already installed in my laptop, the below command was used to connect the DB.
-    mongo --host 192.168.17.11 --port 32575 --authenticationDatabase admin -p <DBPASSWORD>
+    mongo --host 192.168.17.11 --port 32575 --authenticationDatabase admin -p <DBPASSWORD>  
+    
+    MongoDB shell version v4.2.0
+    connecting to: mongodb://192.168.17.11:32575/?authSource=admin&compressors=disabled&gssapiServiceName=mongodb
+    Implicit session: session { "id" : UUID("d6453b18-b737-4ec5-9328-b6077ffb8bd1") }
+    MongoDB server version: 4.2.6
+    >
     
 ### TASK 3 (Install Jenkins via Helm)
 Add HELM REPO
