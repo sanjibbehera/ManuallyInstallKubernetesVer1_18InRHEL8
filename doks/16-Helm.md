@@ -52,13 +52,15 @@ Install Grafana Chart
 Command to edit the service:-  
 kubectl edit svc grafana-sanjib  
 [It will open a vi editor with the YAML content of the service 'grafana-sanjib']  
-Change the specification Type to NodePort from ClusterIP. The Final output should look like below:-   
+Change the specification Type to NodePort from ClusterIP. The Final output should look like below:-  
+![alt NodePort Service](https://github.com/sanjibbehera/ManuallyInstallKubernetesVer1_18InRHEL8/blob/master/snapshots/ServiceTypeChange.PNG)
+
 
 Now find the Nodeport which is exposed after changing the service type via the command.  
 > kubectl get svc grafana-sanjib  
 NAME             TYPE       CLUSTER-IP    EXTERNAL-IP   PORT(S)        AGE  
-grafana-sanjib   NodePort   10.96.0.241   <none>        80:32222/TCP   27m  
-Hence the URL will be 'http://192.168.17.11:32222/'
+grafana-sanjib   NodePort   10.96.0.190   <none>        80:31737/TCP   27m  
+Hence the URL will be 'http://192.168.17.11:31737/'
 
 
 
