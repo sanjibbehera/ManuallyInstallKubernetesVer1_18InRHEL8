@@ -59,8 +59,8 @@ Change the specification Type to NodePort from ClusterIP. The Final output shoul
 Now find the Nodeport which is exposed after changing the service type via the command.  
 > kubectl get svc grafana-sanjib  
 NAME             TYPE       CLUSTER-IP    EXTERNAL-IP   PORT(S)        AGE  
-grafana-sanjib   NodePort   10.96.0.190   <none>        80:32222/TCP   27m  
-Hence the URL will be 'http://192.168.17.11:32222/'
+grafana-sanjib   NodePort   10.96.0.190   <none>        80:31737/TCP   27m  
+Hence the URL will be 'http://192.168.17.11:31737/'
 
 
 
