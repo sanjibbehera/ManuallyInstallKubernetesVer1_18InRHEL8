@@ -49,7 +49,12 @@ Install Grafana Chart
     helm install grafana-sanjib flagger/grafana --version 1.4.0
     
 > Note: Once the service is up and running, edit the service type to NodePort from ClusterIP to access from Web Browser.  
-First find the Nodeport which is exposed after changing the service type via the command.  
+Command to edit the service:-  
+kubectl edit svc grafana-sanjib  
+[It will open a vi editor with the YAML content of the service 'grafana-sanjib']  
+Change the specification Type to NodePort from ClusterIP. The Final output should look like below:-   
+
+Now find the Nodeport which is exposed after changing the service type via the command.  
 > kubectl get svc grafana-sanjib  
 NAME             TYPE       CLUSTER-IP    EXTERNAL-IP   PORT(S)        AGE  
 grafana-sanjib   NodePort   10.96.0.241   <none>        80:32222/TCP   27m  
