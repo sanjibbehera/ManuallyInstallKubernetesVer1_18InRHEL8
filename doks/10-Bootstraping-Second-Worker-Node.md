@@ -2,12 +2,12 @@
 
 ## Prerequisites
 The Certificates and Configuration are created on master node and then copied over to workers using scp.  
-Once this is done, the commands are to be run on second worker instance: workertwo-rhel8-nodetwo.
+Once this is done, the commands are to be run on second worker instance: kubernetes-rhel8-nodetwo.
 
 ### Provisioning Kubelet Client Certificates
-> Generate a certificate and private key for workertwo-rhel8-nodetwo node in master node.
+> Generate a certificate and private key for kubernetes-rhel8-nodetwo node in master node.
 
-    cat > openssl-workertwo-rhel8-nodetwo.cnf <<EOF
+    cat > openssl-kubernetes-rhel8-nodetwo.cnf <<EOF
     [req]
     req_extensions = v3_req
     distinguished_name = req_distinguished_name
@@ -17,13 +17,13 @@ Once this is done, the commands are to be run on second worker instance: workert
     keyUsage = nonRepudiation, digitalSignature, keyEncipherment
     subjectAltName = @alt_names
     [alt_names]
-    DNS.1 = workertwo-rhel8-nodetwo
+    DNS.1 = kubernetes-rhel8-nodetwo
     IP.1 = 192.168.15.12
     EOF
     
-    openssl genrsa -out workertwo-rhel8-nodetwo.key 2048
-    openssl req -new -key workertwo-rhel8-nodetwo.key -subj "/CN=system:node:workertwo-rhel8-nodetwo/O=system:nodes" -out workertwo-rhel8-nodetwo.csr -config openssl-workertwo-rhel8-nodetwo.cnf
-    openssl x509 -req -in workertwo-rhel8-nodetwo.csr -CA ca.crt -CAkey ca.key -CAcreateserial  -out workertwo-rhel8-nodetwo.crt -extensions v3_req -extfile openssl-workertwo-rhel8-nodetwo.cnf -days 365
+    openssl genrsa -out kubernetes-rhel8-nodetwo.key 2048
+    openssl req -new -key kubernetes-rhel8-nodetwo.key -subj "/CN=system:node:kubernetes-rhel8-nodetwo/O=system:nodes" -out kubernetes-rhel8-nodetwo.csr -config openssl-kubernetes-rhel8-nodetwo.cnf
+    openssl x509 -req -in kubernetes-rhel8-nodetwo.csr -CA ca.crt -CAkey ca.key -CAcreateserial  -out kubernetes-rhel8-nodetwo.crt -extensions v3_req -extfile openssl-kubernetes-rhel8-nodetwo.cnf -days 365
     
 ### kubelet Kubernetes Configuration File
 
@@ -32,34 +32,34 @@ Once this is done, the commands are to be run on second worker instance: workert
         --certificate-authority=ca.crt \
         --embed-certs=true \
         --server=https://192.168.15.10:6443 \
-        --kubeconfig=workertwo-rhel8-nodetwo.kubeconfig
+        --kubeconfig=kubernetes-rhel8-nodetwo.kubeconfig
 
-      kubectl config set-credentials system:node:workertwo-rhel8-nodetwo \
-        --client-certificate=workertwo-rhel8-nodetwo.crt \
-        --client-key=workertwo-rhel8-nodetwo.key \
+      kubectl config set-credentials system:node:kubernetes-rhel8-nodetwo \
+        --client-certificate=kubernetes-rhel8-nodetwo.crt \
+        --client-key=kubernetes-rhel8-nodetwo.key \
         --embed-certs=true \
-        --kubeconfig=workertwo-rhel8-nodetwo.kubeconfig
+        --kubeconfig=kubernetes-rhel8-nodetwo.kubeconfig
 
       kubectl config set-context default \
         --cluster=kubernetes-cluster \
-        --user=system:node:workertwo-rhel8-nodetwo \
-        --kubeconfig=workertwo-rhel8-nodetwo.kubeconfig
+        --user=system:node:kubernetes-rhel8-nodetwo \
+        --kubeconfig=kubernetes-rhel8-nodetwo.kubeconfig
 
-      kubectl config use-context default --kubeconfig=workertwo-rhel8-nodetwo.kubeconfig
+      kubectl config use-context default --kubeconfig=kubernetes-rhel8-nodetwo.kubeconfig
     }
     
 > Results
 
-    workertwo-rhel8-nodetwo.kubeconfig
+    kubernetes-rhel8-nodetwo.kubeconfig
     
-### Copy certificates, private keys and kubeconfig files to the worker 'workertwo-rhel8-nodetwo' node:
+### Copy certificates, private keys and kubeconfig files to the worker 'kubernetes-rhel8-nodetwo' node:
 On Master 'kubernetes-rhel8-master' node:
 
-    scp ca.crt workertwo-rhel8-nodetwo.crt workertwo-rhel8-nodetwo.key \
-      workertwo-rhel8-nodetwo.kubeconfig workertwo-rhel8-nodetwo:~/
+    scp ca.crt kubernetes-rhel8-nodetwo.crt kubernetes-rhel8-nodetwo.key \
+      kubernetes-rhel8-nodetwo.kubeconfig kubernetes-rhel8-nodetwo:~/
       
 ### Download and Install Worker Binaries
-Going forward all activities are to be done on the workertwo-rhel8-nodetwo node.
+Going forward all activities are to be done on the kubernetes-rhel8-nodetwo node.
 
     wget -q --show-progress --https-only --timestamping \
       https://storage.googleapis.com/kubernetes-release/release/v1.18.2/bin/linux/amd64/kubectl \
@@ -194,7 +194,7 @@ Execute the below command in master VM.
 
 | NAME | STATUS | ROLES | AGE | VERSION |
 | :---: | :---: | :---: | :---: | :---: |
-| workerone-rhel8-nodeone | Ready | < none > | 4m 3s |  v1.18.2
-| workertwo-rhel8-nodetwo | Ready | < none > | 93s |  v1.18.2
+| kubernetes-rhel8-nodeone | Ready | < none > | 4m 3s |  v1.18.2
+| kubernetes-rhel8-nodetwo | Ready | < none > | 93s |  v1.18.2
 
 Next: [Configuring Kubectl](https://github.com/sanjibbehera/ManuallyInstallKubernetesVer1_18InRHEL8/blob/master/doks/11-Configure-kubectl.md)
