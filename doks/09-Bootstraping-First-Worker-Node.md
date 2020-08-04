@@ -6,10 +6,10 @@ Once this is done, the commands are to be run on first worker instance: workeron
 
 ### Provisioning Kubelet Client Certificates
 
-> Generate a certificate and private key for workerone-rhel8-nodeone node in master node.  
+> Generate a certificate and private key for kubernetes-rhel8-nodeone node in master node.  
 Important Note: Please use the FQDN name for the worker node while creating certificate.
 
-    cat > openssl-workerone-rhel8-nodeone.cnf <<EOF
+    cat > openssl-kubernetes-rhel8-nodeone.cnf <<EOF
     [req]
     req_extensions = v3_req
     distinguished_name = req_distinguished_name
@@ -19,13 +19,13 @@ Important Note: Please use the FQDN name for the worker node while creating cert
     keyUsage = nonRepudiation, digitalSignature, keyEncipherment
     subjectAltName = @alt_names
     [alt_names]
-    DNS.1 = workerone-rhel8-nodeone
+    DNS.1 = kubernetes-rhel8-nodeone
     IP.1 = 192.168.15.11
     EOF
-    
-    openssl genrsa -out workerone-rhel8-nodeone.key 2048
-    openssl req -new -key workerone-rhel8-nodeone.key -subj "/CN=system:node:workerone-rhel8-nodeone/O=system:nodes" -out workerone-rhel8-nodeone.csr -config openssl-workerone-rhel8-nodeone.cnf
-    openssl x509 -req -in workerone-rhel8-nodeone.csr -CA ca.crt -CAkey ca.key -CAcreateserial  -out workerone-rhel8-nodeone.crt -extensions v3_req -extfile openssl-workerone-rhel8-nodeone.cnf -days 365
+
+    openssl genrsa -out kubernetes-rhel8-nodeone.key 2048
+    openssl req -new -key kubernetes-rhel8-nodeone.key -subj "/CN=system:node:kubernetes-rhel8-nodeone/O=system:nodes" -out kubernetes-rhel8-nodeone.csr -config openssl-kubernetes-rhel8-nodeone.cnf
+    openssl x509 -req -in kubernetes-rhel8-nodeone.csr -CA ca.crt -CAkey ca.key -CAcreateserial  -out kubernetes-rhel8-nodeone.crt -extensions v3_req -extfile openssl-kubernetes-rhel8-nodeone.cnf -days 365
     
 ### kubelet Kubernetes Configuration File
 
@@ -34,34 +34,34 @@ Important Note: Please use the FQDN name for the worker node while creating cert
         --certificate-authority=ca.crt \
         --embed-certs=true \
         --server=https://192.168.15.10:6443 \
-        --kubeconfig=workerone-rhel8-nodeone.kubeconfig
+        --kubeconfig=kubernetes-rhel8-nodeone.kubeconfig
 
-      kubectl config set-credentials system:node:workerone-rhel8-nodeone \
-        --client-certificate=workerone-rhel8-nodeone.crt \
-        --client-key=workerone-rhel8-nodeone.key \
+      kubectl config set-credentials system:node:kubernetes-rhel8-nodeone \
+        --client-certificate=kubernetes-rhel8-nodeone.crt \
+        --client-key=kubernetes-rhel8-nodeone.key \
         --embed-certs=true \
-        --kubeconfig=workerone-rhel8-nodeone.kubeconfig
+        --kubeconfig=kubernetes-rhel8-nodeone.kubeconfig
 
       kubectl config set-context default \
         --cluster=kubernetes-cluster \
-        --user=system:node:workerone-rhel8-nodeone \
-        --kubeconfig=workerone-rhel8-nodeone.kubeconfig
+        --user=system:node:kubernetes-rhel8-nodeone \
+        --kubeconfig=kubernetes-rhel8-nodeone.kubeconfig
 
-      kubectl config use-context default --kubeconfig=workerone-rhel8-nodeone.kubeconfig
+      kubectl config use-context default --kubeconfig=kubernetes-rhel8-nodeone.kubeconfig
     }
     
 > Results:-
 
-    workerone-rhel8-nodeone.kubeconfig
+    kubernetes-rhel8-nodeone.kubeconfig
     
 ### Copy certificates, private keys and kubeconfig files to the worker 'workerone-rhel8-nodeone' node:
 On Master 'kubernetes-rhel8-master' node:
 
-    scp ca.crt workerone-rhel8-nodeone.crt workerone-rhel8-nodeone.key \
-      workerone-rhel8-nodeone.kubeconfig workerone-rhel8-nodeone:~/
+    scp ca.crt kubernetes-rhel8-nodeone.crt kubernetes-rhel8-nodeone.key \
+      kubernetes-rhel8-nodeone.kubeconfig kubernetes-rhel8-nodeone:~/
     
 ### Download and Install Worker Binaries
-Going forward all activities are to be done on the workerone-rhel8-nodeone node.
+Going forward all activities are to be done on the kubernetes-rhel8-nodeone node.
 
     wget -q --show-progress --https-only --timestamping \
       https://storage.googleapis.com/kubernetes-release/release/v1.18.2/bin/linux/amd64/kubectl \
