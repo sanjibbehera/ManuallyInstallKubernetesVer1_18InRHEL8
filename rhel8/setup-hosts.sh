@@ -9,6 +9,6 @@ sudo yum install -y wget net-tools
 # Update /etc/hosts about other hosts
 sudo cat >> /etc/hosts <<EOF
 192.168.15.10  kubernetes-rhel8-master
-192.168.15.11  workerone-rhel8-nodeone
-192.168.15.12  workertwo-rhel8-nodetwo
+192.168.15.11  kubernetes-rhel8-nodeone
+192.168.15.12  kubernetes-rhel8-nodetwo
 EOF
