@@ -122,7 +122,7 @@ Generate a kubeconfig file for the admin user:
     
 > Copy the appropriate kube-proxy kubeconfig files to each worker instance:
 
-    for instance in workerone-rhel8-nodeone workertwo-rhel8-nodetwo; do
+    for instance in kubernetes-rhel8-nodeone kubernetes-rhel8-nodetwo; do
       scp kube-proxy.kubeconfig ${instance}:~/certificates/
     done
     
