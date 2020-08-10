@@ -79,9 +79,11 @@ Add HELM REPO
 
     persistentvolume/task-pv-volume created
 
+Important Note. (Always check where the pod is getting created, you have create a directory <b>/bitnami/mongodb</b> with 1001 as its owner, or else create this directory on all worker nodes.)
+
 Install MongoDB.
 
-    helm install bitnami/mongodb
+    helm install dev-mongodb bitnami/mongodb
     
 > Output:
 
